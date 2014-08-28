@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<properties>
+    <handlersConfiguration>
+        <configuration handler="VDocUtilityClass">
+            <configurationUtilityClassFileConfiguration>
+                <className>SiteConfiguration</className>
+                <generationPackage>com.vdoc.engineering.my.product.commons.configuration</generationPackage>
+            </configurationUtilityClassFileConfiguration>
+        </configuration>
+    </handlersConfiguration>
+
+    <property name="store.details.url">
+        <handlersConfiguration>
+            <configuration handler="VDocUtilityClass">
+                <configurationUtilityClassPropertyConfiguration mandatory="true" type="string" >
+                </configurationUtilityClassPropertyConfiguration>
+            </configuration>
+        </handlersConfiguration>
+
+        <default-value>$webapp$/easysite/$site$/mon-catalogue-produit</default-value>
+    </property>
+
+    <property name="store.url">
+        <handlersConfiguration>
+            <configuration handler="VDocUtilityClass">
+                <configurationUtilityClassPropertyConfiguration mandatory="true" type="string" >
+                </configurationUtilityClassPropertyConfiguration>
+            </configuration>
+        </handlersConfiguration>
+
+        <default-value>$webapp$/easysite/$site$/mon-catalogue-produit?store=%1s</default-value>
+    </property>
+
+    <property name="store.home.url">
+        <handlersConfiguration>
+            <configuration handler="VDocUtilityClass">
+                <configurationUtilityClassPropertyConfiguration mandatory="true" type="string" >
+                </configurationUtilityClassPropertyConfiguration>
+            </configuration>
+        </handlersConfiguration>
+
+        <default-value>$webapp$/easysite/$site$/tableau-de-bord</default-value>
+    </property>
+
+    <property name="storage.plugin.url">
+        <handlersConfiguration>
+            <configuration handler="VDocUtilityClass">
+                <configurationUtilityClassPropertyConfiguration mandatory="true" type="string" >
+                </configurationUtilityClassPropertyConfiguration>
+            </configuration>
+        </handlersConfiguration>
+
+        <default-value>$webapp$/easysite/$site$/$frontEnd$/%1s-document/%2s</default-value>
+    </property>
+
+    <property name="storage.plugin.path">
+        <handlersConfiguration>
+            <configuration handler="VDocUtilityClass">
+                <configurationUtilityClassPropertyConfiguration mandatory="true" type="string" >
+                </configurationUtilityClassPropertyConfiguration>
+            </configuration>
+        </handlersConfiguration>
+
+        <default-value>storage</default-value>
+    </property>
+
+    <property name="sheet.default.thumbnail">
+        <handlersConfiguration>
+            <configuration handler="VDocUtilityClass">
+                <configurationUtilityClassPropertyConfiguration mandatory="true" type="string" >
+                </configurationUtilityClassPropertyConfiguration>
+            </configuration>
+        </handlersConfiguration>
+
+        <default-value>$webapp$/resources/myproduct/sheet/images/default-thumbnail.png</default-value>
+    </property>
+
+    <property name="frontend.plugin.path">
+        <handlersConfiguration>
+            <configuration handler="VDocUtilityClass">
+                <configurationUtilityClassPropertyConfiguration mandatory="true" type="string" >
+                </configurationUtilityClassPropertyConfiguration>
+            </configuration>
+        </handlersConfiguration>
+
+        <default-value>catalogs</default-value>
+    </property>
+
+    <property name="frontend.libraryitem.page.startUrl">
+        <handlersConfiguration>
+            <configuration handler="VDocUtilityClass">
+                <configurationUtilityClassPropertyConfiguration mandatory="true" type="string" >
+                </configurationUtilityClassPropertyConfiguration>
+            </configuration>
+        </handlersConfiguration>
+
+        <default-value>/easysite/$site$/libraryitem</default-value>
+    </property>
+
+    <property name="robotstxt.file">
+        <handlersConfiguration>
+            <configuration handler="VDocUtilityClass">
+                <configurationUtilityClassPropertyConfiguration mandatory="true" type="string" >
+                </configurationUtilityClassPropertyConfiguration>
+            </configuration>
+        </handlersConfiguration>
+
+        <default-value>robots.txt</default-value>
+    </property>
+
+</properties>
