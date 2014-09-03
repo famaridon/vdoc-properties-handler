@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <properties>
     <handlersConfiguration>
+        <configuration handler="properties">
+            <propertiesRootConfiguration prefix="com.famaridon.test"/>
+        </configuration>
         <configuration handler="VDocUtilityClass">
             <configurationUtilityClassFileConfiguration>
                 <className>SiteConfiguration</className>
@@ -12,8 +15,7 @@
     <property name="store.details.url">
         <handlersConfiguration>
             <configuration handler="VDocUtilityClass">
-                <configurationUtilityClassPropertyConfiguration mandatory="true" type="string" >
-                </configurationUtilityClassPropertyConfiguration>
+                <configurationUtilityClassPropertyConfiguration mandatory="true" type="string" />
             </configuration>
         </handlersConfiguration>
 
@@ -23,8 +25,7 @@
     <property name="store.url">
         <handlersConfiguration>
             <configuration handler="VDocUtilityClass">
-                <configurationUtilityClassPropertyConfiguration mandatory="true" type="string" >
-                </configurationUtilityClassPropertyConfiguration>
+                <configurationUtilityClassPropertyConfiguration mandatory="true" type="string" />
             </configuration>
         </handlersConfiguration>
 
@@ -34,8 +35,7 @@
     <property name="store.home.url">
         <handlersConfiguration>
             <configuration handler="VDocUtilityClass">
-                <configurationUtilityClassPropertyConfiguration mandatory="true" type="string" >
-                </configurationUtilityClassPropertyConfiguration>
+                <configurationUtilityClassPropertyConfiguration mandatory="true" type="string" />
             </configuration>
         </handlersConfiguration>
 
@@ -45,8 +45,7 @@
     <property name="storage.plugin.url">
         <handlersConfiguration>
             <configuration handler="VDocUtilityClass">
-                <configurationUtilityClassPropertyConfiguration mandatory="true" type="string" >
-                </configurationUtilityClassPropertyConfiguration>
+                <configurationUtilityClassPropertyConfiguration mandatory="true" type="string" />
             </configuration>
         </handlersConfiguration>
 
@@ -56,8 +55,7 @@
     <property name="storage.plugin.path">
         <handlersConfiguration>
             <configuration handler="VDocUtilityClass">
-                <configurationUtilityClassPropertyConfiguration mandatory="true" type="string" >
-                </configurationUtilityClassPropertyConfiguration>
+                <configurationUtilityClassPropertyConfiguration mandatory="true" type="string" />
             </configuration>
         </handlersConfiguration>
 
@@ -67,8 +65,7 @@
     <property name="sheet.default.thumbnail">
         <handlersConfiguration>
             <configuration handler="VDocUtilityClass">
-                <configurationUtilityClassPropertyConfiguration mandatory="true" type="string" >
-                </configurationUtilityClassPropertyConfiguration>
+                <configurationUtilityClassPropertyConfiguration mandatory="true" type="string" />
             </configuration>
         </handlersConfiguration>
 
@@ -78,8 +75,7 @@
     <property name="frontend.plugin.path">
         <handlersConfiguration>
             <configuration handler="VDocUtilityClass">
-                <configurationUtilityClassPropertyConfiguration mandatory="true" type="string" >
-                </configurationUtilityClassPropertyConfiguration>
+                <configurationUtilityClassPropertyConfiguration mandatory="true" type="string" />
             </configuration>
         </handlersConfiguration>
 
@@ -89,8 +85,7 @@
     <property name="frontend.libraryitem.page.startUrl">
         <handlersConfiguration>
             <configuration handler="VDocUtilityClass">
-                <configurationUtilityClassPropertyConfiguration mandatory="true" type="string" >
-                </configurationUtilityClassPropertyConfiguration>
+                <configurationUtilityClassPropertyConfiguration mandatory="true" type="string" />
             </configuration>
         </handlersConfiguration>
 
@@ -100,12 +95,29 @@
     <property name="robotstxt.file">
         <handlersConfiguration>
             <configuration handler="VDocUtilityClass">
-                <configurationUtilityClassPropertyConfiguration mandatory="true" type="string" >
-                </configurationUtilityClassPropertyConfiguration>
+                <configurationUtilityClassPropertyConfiguration mandatory="true" type="string" />
             </configuration>
         </handlersConfiguration>
 
         <default-value>robots.txt</default-value>
+    </property>
+
+    <property name="default.organization">
+        <handlersConfiguration>
+            <configuration handler="VDocUtilityClass">
+                <configurationUtilityClassPropertyConfiguration mandatory="true" type="organization"  />
+            </configuration>
+        </handlersConfiguration>
+
+        <default-value>uril://vdoc/DefaultOrganization</default-value>
+        <values>
+            <environment scope="development">
+                <value>uril://vdoc/VDocDev</value>
+            </environment>
+            <environment scope="production">
+                <value>uril://vdoc/VDoc</value>
+            </environment>
+        </values>
     </property>
 
 </properties>

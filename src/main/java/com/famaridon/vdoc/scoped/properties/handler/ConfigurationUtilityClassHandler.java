@@ -4,6 +4,8 @@ import com.famaridon.maven.scoped.properties.annotations.CustomHandler;
 import com.famaridon.maven.scoped.properties.beans.ScopedPropertiesConfiguration;
 import com.famaridon.maven.scoped.properties.beans.properties.Property;
 import com.famaridon.maven.scoped.properties.exceptions.BuildPropertiesFilesException;
+import com.famaridon.maven.scoped.properties.extension.defaults.PropertiesFileHandler;
+import com.famaridon.maven.scoped.properties.extension.defaults.configuration.beans.PropertiesRootConfiguration;
 import com.famaridon.maven.scoped.properties.extension.interfaces.ScopedPropertiesHandler;
 import com.famaridon.vdoc.scoped.properties.handler.beans.ConfigurationUtilityClassFileConfiguration;
 import com.famaridon.vdoc.scoped.properties.handler.beans.ConfigurationUtilityClassPropertyConfiguration;
@@ -32,6 +34,7 @@ public class ConfigurationUtilityClassHandler implements ScopedPropertiesHandler
 	public static final String KEY_DELIMITERS_REGEX = "\\.* *";
 
 	protected ScopedPropertiesConfiguration configuration;
+	protected PropertiesRootConfiguration propertiesRootConfiguration;
 	protected ConfigurationUtilityClassFileConfiguration fileHandlerConfiguration;
 	protected File currentFile;
 
@@ -53,7 +56,9 @@ public class ConfigurationUtilityClassHandler implements ScopedPropertiesHandler
 	 */
 	@Override
 	public void startDocument(ScopedPropertiesConfiguration configuration, ConfigurationUtilityClassFileConfiguration fileHandlerConfiguration, File currentFile) throws BuildPropertiesFilesException {
+
 		this.configuration = configuration;
+		this.propertiesRootConfiguration = this.configuration.getHandlersConfiguration(PropertiesFileHandler.class);
 		this.fileHandlerConfiguration = fileHandlerConfiguration;
 		this.currentFile = currentFile;
 		cm = new JCodeModel();
@@ -161,7 +166,7 @@ public class ConfigurationUtilityClassHandler implements ScopedPropertiesHandler
 		JVar value = appendValueGet(property, propertyHandlerConfiguration, getter);
 
 		// the exception message used only if needed
-		JInvocation message = java.stringType.staticInvoke("format").arg(invalidConfigurationMessage).arg(property.getName());
+		JInvocation message = java.stringType.staticInvoke("format").arg(invalidConfigurationMessage).arg(property.getKey(this.propertiesRootConfiguration));
 
 		// the try part
 		JTryBlock theTry = getter.body()._try();
@@ -191,9 +196,10 @@ public class ConfigurationUtilityClassHandler implements ScopedPropertiesHandler
 	}
 
 	private JVar appendValueGet(Property property, ConfigurationUtilityClassPropertyConfiguration propertyHandlerConfiguration, JMethod getter) {
-		JVar value = getter.body().decl(java.stringType, "value", JExpr.invoke("getConfiguration").invoke("getStringProperty").arg(property.getName()));
+		String propertyKey = property.getKey(this.propertiesRootConfiguration);
+		JVar value = getter.body().decl(java.stringType, "value", JExpr.invoke("getConfiguration").invoke("getStringProperty").arg(propertyKey));
 		if (propertyHandlerConfiguration.isMandatory()) {
-			getter.body().staticInvoke(apache.validate, "notEmpty").arg(value).arg(java.stringType.staticInvoke("format").arg(missingConfigurationMessage).arg(property.getName()));
+			getter.body().staticInvoke(apache.validate, "notEmpty").arg(value).arg(java.stringType.staticInvoke("format").arg(missingConfigurationMessage).arg(propertyKey));
 		}
 		return value;
 	}

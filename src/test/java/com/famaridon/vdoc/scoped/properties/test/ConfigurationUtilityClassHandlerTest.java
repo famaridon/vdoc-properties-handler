@@ -8,6 +8,7 @@ import com.famaridon.maven.scoped.properties.tools.ScopedProperties;
 import com.famaridon.vdoc.scoped.properties.handler.beans.ConfigurationUtilityClassFileConfiguration;
 import com.famaridon.vdoc.scoped.properties.handler.beans.ConfigurationUtilityClassPropertyConfiguration;
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.IOUtils;
 import org.junit.AfterClass;
 import org.junit.Assert;
@@ -60,7 +61,7 @@ public class ConfigurationUtilityClassHandlerTest {
 		ScopedPropertiesConfiguration.Builder configurationBuilder = new ScopedPropertiesConfiguration.Builder();
 		configurationBuilder.appendOutputFolder(tempDirectoryOutput);
 		configurationBuilder.appendPropertiesXmlFolder(tempDirectoryInput);
-		configurationBuilder.appendTargetScope("production");
+		configurationBuilder.appendTargetScope("development");
 		configurationBuilder.appendHandlerPackages(Collections.singletonList("com.famaridon.vdoc.scoped.properties.handler"));
 		ScopedProperties scopedProperties = new ScopedProperties(configurationBuilder.build());
 		Set<File> outputFileSet = scopedProperties.buildPropertiesFiles();
@@ -68,7 +69,7 @@ public class ConfigurationUtilityClassHandlerTest {
 
 		// the output file name should be custom.properties
 		// we can't compare file byte per byte because properties output the timestamp.
-		File output = new File(tempDirectoryOutput, "custom.properties");
+		File output = new File(tempDirectoryOutput, FilenameUtils.getBaseName(CUSTOM_PROPERTIES_XML_FILE_NAME));
 		try (FileInputStream inputStream = new FileInputStream(output)) {
 			properties.load(inputStream);
 		} catch (FileNotFoundException e) {
